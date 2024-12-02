@@ -1,4 +1,4 @@
-package goassistant
+package glnassistant
 
 import (
 	"math/rand"
