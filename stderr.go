@@ -1,4 +1,4 @@
-package go_assistant
+package goassistant
 
 import (
 	"fmt"
