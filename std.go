@@ -11,17 +11,16 @@ import (
 
 func Stderr(text string) {
 	fmt.Fprintf(os.Stderr, "[%s] %s\n", color.HiRedString("error"), text)
-	fmt.Fprintf(os.Stderr, "[%s] %s\n", color.New(color.FgRed, color.Bold).Sprint("error"), text)
 }
 
-func Stdout(text string) {
+func Stdout(inBracket, text string) {
 
 	// Seed the random number generator
 	rand.Seed(time.Now().UnixNano())
 
 	// Define a list of terminal colors from the fatih/color package
 	colors := []*color.Color{
-		color.New(color.FgRed),
+		// color.New(color.FgRed),
 		color.New(color.FgGreen),
 		color.New(color.FgYellow),
 		color.New(color.FgBlue),
@@ -33,13 +32,10 @@ func Stdout(text string) {
 	// Select a random color
 	randomColor := colors[rand.Intn(len(colors))]
 
-	// Print a message with the random color
-	randomColor.Println(text)
-
-	// Print multiple messages with random colors
-	for i := 0; i < 5; i++ {
-		randomColor := colors[rand.Intn(len(colors))]
-		randomColor.Printf("Message %d with random color\n", i+1)
+	if len(inBracket) > 0 {
+		fmt.Printf("[%s] %s\n", randomColor.Sprint(inBracket), text)
+	} else {
+		randomColor.Println(text)
 	}
 
 }
